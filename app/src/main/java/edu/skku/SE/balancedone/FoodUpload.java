@@ -63,7 +63,11 @@ public class FoodUpload extends AppCompatActivity {
             if(filepath != null){
                 try{
                     Bitmap photo = MediaStore.Images.Media.getBitmap(getContentResolver(), filepath);
-                    image.setImageBitmap(photo);
+                    Matrix matrix = new Matrix();
+                    matrix.postRotate(360);
+                    Bitmap photoRotate = Bitmap.createBitmap(photo, 0, 0, photo.getWidth(), photo.getHeight(), matrix, false);
+                    photo.recycle();
+                    image.setImageBitmap(photoRotate);                                              //이 이미지(PhotoRotate)를 서버에 전달해야함
                 }catch (IOException e){
                     e.printStackTrace();
                 }
@@ -87,7 +91,7 @@ public class FoodUpload extends AppCompatActivity {
                 Bitmap photoRotate = Bitmap.createBitmap(photoResize, 0, 0, photoResize.getWidth(), photoResize.getHeight(), matrix, false);
                 photoResize.recycle();
 
-                image.setImageBitmap(photoRotate);
+                image.setImageBitmap(photoRotate);                                                 //이 이미지(PhotoRotate)를 서버에 전달해야함
             }
         }
     }
