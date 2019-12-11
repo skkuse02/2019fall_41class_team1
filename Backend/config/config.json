@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "admin",
+    "password": "rubicscube213",
+    "database": "db",
+    "host": "127.0.0.1",
+    "port": 22000,
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "admin",
+    "password": "rubicscube213",
+    "database": "db",
+    "host": "jhrabbit.iptime.org",
+    "port": 13306,
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "admin",
+    "password": "rubicscube213",
+    "database": "db",
+    "host": "jhrabbit.iptime.org",
+    "port": 13306,
+    "dialect": "mysql"
+  }
+}
