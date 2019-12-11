@@ -1,0 +1,44 @@
+{
+	"development": {
+		"port": 3000,
+		"db": {
+			"host": "211.249.61.207",
+			"username": "dev_sw",
+			"password": "@thveo(*&",
+			"database": "dev_sw_new",
+			"multipleStatements": true,
+			"timezone": "+09:00",
+			"operatorsAliases": false,
+			"dialect": "mysql",
+			"upload_path": "static/img/",
+			"upload_image": "static/img/",
+			"define" : {
+				"charset": "utf8",
+				"collate": "utf8_general_ci"
+			}
+		},
+		"path": {
+			"index": "/../dist_dev",
+			"upload_path": "webdata/icc/uploads"
+		}
+	},
+	"production": {
+		"port": 8090,
+		"db": {
+			"host": "127.0.0.1",
+			"port": "3306",
+			"user": "swc",
+			"username": "swc",
+			"password": "!dnjrtlf*()",
+			"database": "pro_swc",
+			"multipleStatements": true,
+			"timezone": "+09:00",
+			"operatorsAliases": false,
+			"dialect": "mysql"
+		},
+		"path": {
+			"index": "/../dist",
+			"upload_path": "webdata/sw/uploads"
+		}
+	}
+}
