@@ -11,16 +11,16 @@
     "username": "admin",
     "password": "rubicscube213",
     "database": "db",
-    "host": "jhrabbit.iptime.org",
-    "port": 13306,
+    "host": "127.0.0.1",
+    "port": 22000,
     "dialect": "mysql"
   },
   "production": {
     "username": "admin",
     "password": "rubicscube213",
     "database": "db",
-    "host": "jhrabbit.iptime.org",
-    "port": 13306,
+    "host": "127.0.0.1",
+    "port": 22000,
     "dialect": "mysql"
   }
 }
