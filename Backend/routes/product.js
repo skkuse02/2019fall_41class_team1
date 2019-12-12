@@ -31,7 +31,7 @@ router.get('/item/:id', async function(req,res) {
 router.post('/order', async function(req,res) {
     await models.Order.create({
         uid: req.body.uid,
-        pid: req.body.fid
+        pid: req.body.pid
     });
 
     res.send({

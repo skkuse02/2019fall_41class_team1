@@ -93,6 +93,52 @@ router.post('/upload', async function(req,res) {
         image: classification.image
     });
 
+    var user = await models.User.findOne({
+        where: {
+            id: req.body.id
+        }
+    });
+
+    await models.User.update({
+        calories: user.calories + food.calories,
+        fiber: user.fiber + food.fiber,
+        calcium: user.calcium + food.calcium,
+        iron: user.iron + food.iron,
+        sodium: user.sodium + food.sodium,
+        vitaminA: user.vitaminA + food.vitaminA,
+    }, {
+        where: {
+            id: req.body.id
+        }
+    });
+
+    // 추천 추가
+    var foods = await models.Food.findAll();
+
+    var m = 2000000;
+    var mi;
+
+    for(const item of foods) {
+        var calories = Math.abs(user.calories + food.calories + item.calories - 2300)/2300;
+        var fiber = Math.abs(user.fiber + food.fiber + item.fiber - 25)/25;
+        var calcium = Math.abs(user.calcium + food.calcium + item.calcium - 750)/750;
+        var iron = Math.abs(user.iron + food.iron + item.iron - 12)/12;
+        var sodium = Math.abs(user.sodium + food.sodium + item.sodium - 1500)/1500;
+        var vitaminA = Math.abs(user.vitaminA + food.vitaminA + item.vitaminA - 800)/800;
+
+        var sum = calories + fiber + calcium + iron + sodium + vitaminA;
+
+        if(sum < m) {
+            m = sum;
+            mi = item.id;
+        }
+    }
+    
+    await models.Recommendation.create({
+        uid: req.body.id,
+        fid: mi
+    });
+
     res.send({
         result: true
     });
