@@ -39,4 +39,20 @@ router.post('/order', async function(req,res) {
     });
 });
 
+router.get('/order/:id', async function(req,res) {
+    var order = await models.Order.findAll({
+        where: {
+            uid: req.params.id
+        },
+        include: {
+            model: models.Product
+        }
+    });
+
+    res.send({
+        result: true,
+        data: order
+    });
+});
+
 module.exports = router;

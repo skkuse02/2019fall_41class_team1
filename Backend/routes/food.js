@@ -14,7 +14,6 @@ var _storage = multer.diskStorage({
 });
 var upload = multer({storage: _storage});
 
-/* GET users listing. */
 router.post('/image', upload.single('image'), async function(req,res) {
     var client = new vision.ImageAnnotatorClient();
 
@@ -49,14 +48,16 @@ router.post('/image', upload.single('image'), async function(req,res) {
 
     if(counter === 0) {
         res.send({
-            result: false
+            result: false,
+            image: req.file.filename
         })
     } else {
         await models.ClassificationData.bulkCreate(data);
 
         res.send({
             result: true,
-            id: classification.id
+            id: classification.id,
+            image: req.file.filename
         });
     }
 });
@@ -75,27 +76,33 @@ router.get('/data/:id', async function(req,res) {
 });
 
 router.post('/upload', async function(req,res) {
+    var classificationData = await models.ClassificationData.findOne({
+        where: {
+            id: req.body.id
+        }
+    });
+
     var food = await models.Food.findOne({
         where: {
-            name: req.body.result
+            name: classificationData.result
         }
     });
 
     var classification = await models.Classification.findOne({
         where: {
-            id: req.body.cid
+            id: classificationData.cid
         }
     });
 
     await models.UserFood.create({
-        uid: req.body.id,
+        uid: req.body.uid,
         fid: food.id,
         image: classification.image
     });
 
     var user = await models.User.findOne({
         where: {
-            id: req.body.id
+            id: req.body.uid
         }
     });
 
@@ -108,7 +115,7 @@ router.post('/upload', async function(req,res) {
         vitaminA: user.vitaminA + food.vitaminA,
     }, {
         where: {
-            id: req.body.id
+            id: req.body.uid
         }
     });
 
@@ -135,7 +142,7 @@ router.post('/upload', async function(req,res) {
     }
 
     await models.Recommendation.create({
-        uid: req.body.id,
+        uid: req.body.uid,
         fid: mi
     });
 

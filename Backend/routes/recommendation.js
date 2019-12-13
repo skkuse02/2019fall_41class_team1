@@ -7,7 +7,9 @@ router.get('/:id', async function(req,res) {
         where: {
             uid: req.params.id
         },
-        orders: [['createdAt','DESC']]
+        order: [
+            ['createdAt','DESC']
+        ]
     });
 
     if(recommendation) {

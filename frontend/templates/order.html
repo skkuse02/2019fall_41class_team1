@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+    </title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Cartzilla - Bootstrap E-commerce Template">
+    <meta name="keywords" content="bootstrap, shop, e-commerce, market, modern, responsive,  business, mobile, bootstrap 4, html5, css3, jquery, js, gallery, slider, touch, creative, clean">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" color="#fe6a6a" href="safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
+    <link rel="stylesheet" media="screen" href="static/assets/css/vendor.min.css">
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" id="main-styles" href="static/assets/css/theme.min.css">
+  </head>
+  <!-- Body-->
+  <body >
+    <!-- Products list-->
+        <section class="col-lg-8 pt-2" style="text-align: center;">
+          <!-- Product-->
+            {% for item in data %}
+          <div class="card product-card product-list">
+            <div class="d-sm-flex align-items-center"><img src="{{ item['Product']['image'] }}" alt="Product">
+              <div class="card-body py-2">
+                <h3 class="product-title font-size-base">{{ item['Product']['name'] }}</h3>
+                <div class="d-flex justify-content-between">
+                  <div class="product-price" style="margin-left: auto; margin-right: auto;"><span class="text-accent">{{ item['Product']['price'] }}원</span></div>
+                </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          <hr class="pt-3 mt-3">
+        </section>
+    <!-- JavaScript libraries, plugins and custom scripts-->
+    <script src="static/assets/js/vendor.min.js"></script>
+    <script src="static/assets/js/theme.min.js"></script>
+  </body>
+</html>
