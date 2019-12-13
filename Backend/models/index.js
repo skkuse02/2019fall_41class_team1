@@ -21,7 +21,8 @@ var tconfig = {
 
   dstHost: '127.0.0.1',  //최종목적지(내가 접속 할 데이터베이스)
   dstPort: 3306,        //최종목적지에서 사용할 포트(내가 접속 할 데이터베이스 포트)
-  localPort: 22000       //ssh가 접속후 사용할 가상포트번호
+  localPort: 22000,       //ssh가 접속후 사용할 가상포트번호
+  keepAlive: true
 };
 
 // initiate tunnel
