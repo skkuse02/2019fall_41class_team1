@@ -144,7 +144,7 @@ def oauth():
 
     url = 'https://kauth.kakao.com/oauth/token'
 
-    payload = 'grant_type=authorization_code&client_id=a484689da33aa21c3d84caf1bed71686&redirect_uri=http://http://jhrabbit.iptime.org:15000/oauth&code='+code
+    payload = 'grant_type=authorization_code&client_id=a484689da33aa21c3d84caf1bed71686&redirect_uri=http://jhrabbit.iptime.org:15000/oauth&code='+code
 
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
