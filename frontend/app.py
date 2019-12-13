@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 app.secret_key = 'Nharu7'
 
-URL = 'http://localhost:3000'
+URL = 'http://jhrabbit.iptime.org:13000'
 
 
 @app.route('/login')
