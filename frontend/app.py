@@ -19,7 +19,11 @@ def login():
 
 @app.route('/main')
 def main():
-    return render_template('main.html')
+    url = URL + '/user/' + str(session['uid'])
+    r = requests.get(url)
+    data = r.json()
+    data = data['data']
+    return render_template('main.html', data=data)
 
 
 @app.route('/image')
