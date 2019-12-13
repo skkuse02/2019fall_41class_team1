@@ -3,6 +3,7 @@ var router = express.Router();
 const models = require('../models');
 var multer = require('multer');
 var vision = require('@google-cloud/vision');
+var request = require('request');
 
 var _storage = multer.diskStorage({
     destination: function(req,file,cb) {
@@ -144,6 +145,33 @@ router.post('/upload', async function(req,res) {
     await models.Recommendation.create({
         uid: req.body.uid,
         fid: mi
+    });
+
+    var option = {
+        url: 'https://api.luniverse.io/tx/v1.1/transactions/transfer',
+        method: 'POST',
+        form: {
+            "from": "0xb4ae74322b3ab45c2588690ae6e7da1ad4a9f6fe",
+            "inputs": {
+                "receiverAddress": "0xda73503f818dbba5716bb3dc414bd1ac393feb8f",
+                "valueAmount": "20000000000000000000000"
+            }
+        },
+        headers: {
+            "Authorization": "Bearer iRJsA2VY2oXDbXsbHvWisgqjNo5rBpJyxbNKd9jpBn2pF8tQuQWCpD2Dh1oBYqTf",
+            "Content-Type": "application/json"
+        },
+        json: true
+    };
+
+    request(option);
+
+    await models.User.update({
+        token: user.token + 20000
+    }, {
+        where: {
+            id: req.body.uid
+        }
     });
 
     res.send({
